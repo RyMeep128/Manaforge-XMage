@@ -22,5 +22,15 @@
       "i/immortal_obligation.txt": "b1f1043970523df10f3021254136eaed43f6cb8a80ce41c722fbda07f4acca2a"
     }
   },
-  "changes": []
+  "changes": [
+    {
+      "id": "MF-FEATHER-RADIANT-ARBITER",
+      "status": "implemented",
+      "tests": "org.mage.test.cards.manaforge.FeatherRadiantArbiterTest",
+      "dependencies": [],
+      "upstream_equivalent": null,
+      "disposition": "retain",
+      "reference": "f/feather_radiant_arbiter.txt"
+    }
+  ]
 }
