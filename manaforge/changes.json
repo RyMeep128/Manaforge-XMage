@@ -31,6 +31,15 @@
       "upstream_equivalent": null,
       "disposition": "retain",
       "reference": "f/feather_radiant_arbiter.txt"
+    },
+    {
+      "id": "MF-IMMORTAL-OBLIGATION",
+      "status": "implemented",
+      "tests": "org.mage.test.cards.manaforge.ImmortalObligation*Test",
+      "dependencies": [],
+      "upstream_equivalent": null,
+      "disposition": "retain",
+      "reference": "i/immortal_obligation.txt"
     }
   ]
 }
