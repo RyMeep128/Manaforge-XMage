@@ -35,7 +35,7 @@ jobs:
       - name: Build coherent modules
         run: mvn -B -ntp -Dmanaforge.revision=$GITHUB_SHA -Dproject.build.outputTimestamp=$SOURCE_TIME -pl Mage.Server,Mage.Client,Mage.Tests -am clean install -DskipTests
       - name: Focused card regressions
-        run: mvn -B -ntp -pl Mage.Tests -am test '-Dtest=FeatherRadiantArbiterTest,ImmortalObligation*Test' -Dsurefire.failIfNoSpecifiedTests=false
+        run: mvn -B -ntp -pl Mage.Tests -am test '-Dtest=FeatherRadiantArbiterTest,ImmortalObligation*Test,HitItTest,MjolnirHammerOfThorTest' -Dsurefire.failIfNoSpecifiedTests=false
       - name: Broad engine validation
         if: github.event_name == 'workflow_dispatch' && inputs.broad
         run: mvn -B -ntp -pl Mage.Tests -am test

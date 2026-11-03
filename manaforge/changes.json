@@ -40,6 +40,27 @@
       "upstream_equivalent": null,
       "disposition": "retain",
       "reference": "i/immortal_obligation.txt"
+    },
+    {
+      "id": "MF-HIT-IT",
+      "card_name": "Hit It!",
+      "status": "implemented",
+      "tests": "org.mage.test.cards.manaforge.HitItTest",
+      "dependencies": [],
+      "upstream_equivalent": "1acac4aa7f69e44dcbb7b1d8bd7a5b7eae68d22e:Mage.Sets/src/mage/cards/h/HitIt.java",
+      "disposition": "retain public-reveal correction until upstream adopts",
+      "reference": null,
+      "rules_reference": "https://magic.wizards.com/en/news/feature/star-trek-release-notes"
+    },
+    {
+      "id": "MF-MJOLNIR-IDENTITY-COVERAGE",
+      "card_name": "Mj\u00f6lnir, Hammer of Thor",
+      "status": "existing_implementation_verified",
+      "tests": "org.mage.test.cards.single.msh.MjolnirHammerOfThorTest",
+      "dependencies": [],
+      "upstream_equivalent": "existing MjolnirHammerOfThor implementation",
+      "disposition": "retain regression tests; spelling alias is in Manaforge rules_identity.py",
+      "reference": "m/mjolnir_hammer_of_thor.txt"
     }
   ]
 }
