@@ -1,0 +1,26 @@
+{
+  "ledger_version": 1,
+  "upstream_commit": "eb69d05b88142b5c4eec4869bcb23a0fec13c091",
+  "upstream_tag": "xmage_1.4.62V1",
+  "binary_baseline": {
+    "build_time": "2026-10-03T20:33:52Z",
+    "source_commit": null,
+    "provenance": "The installed binary declares 1.4.62-V1 but embeds no Git revision; exact source correspondence is unproven."
+  },
+  "baseline_build": {
+    "result": "passed",
+    "maven": "3.9.9",
+    "jdk": "23",
+    "command": "mvn -B -pl Mage.Server,Mage.Client,Mage.Tests -am install -DskipTests",
+    "log_sha256": "d0f5557d7f011cd68e63612f8ddd5facd5bb329b8187ef87e12f1bed58fe3449"
+  },
+  "forge_reference": {
+    "build": "2026-09-28 22:22:04",
+    "license": "GPL-3.0; behavior reference only, no source copied",
+    "scripts": {
+      "f/feather_radiant_arbiter.txt": "ca236f4ae2d2291eb0790701594925bad7396104b2fabffe6808f373baf483a4",
+      "i/immortal_obligation.txt": "b1f1043970523df10f3021254136eaed43f6cb8a80ce41c722fbda07f4acca2a"
+    }
+  },
+  "changes": []
+}
