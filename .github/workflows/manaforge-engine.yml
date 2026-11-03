@@ -37,7 +37,7 @@ jobs:
       - name: Focused card regressions
         run: mvn -B -ntp -pl Mage.Tests -am test '-Dtest=FeatherRadiantArbiterTest,ImmortalObligation*Test,HitItTest,MjolnirHammerOfThorTest' -Dsurefire.failIfNoSpecifiedTests=false
       - name: Broad engine validation
-        if: github.event_name == 'workflow_dispatch' && inputs.broad
+        if: github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && inputs.broad)
         run: mvn -B -ntp -pl Mage.Tests -am test
       - name: Package matching distributions
         run: mvn -B -ntp -Dmanaforge.revision=$GITHUB_SHA -Dproject.build.outputTimestamp=$SOURCE_TIME -pl Mage.Server,Mage.Client package assembly:single -DskipTests
