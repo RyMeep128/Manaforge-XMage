@@ -14,6 +14,7 @@
         <!-- app: game must be able to run under java 8 -->
         <java.version>8</java.version>
         <java.release>8</java.release>
+        <manaforge.revision>unrecorded</manaforge.revision>
         <project.build.outputTimestamp>2026-10-03T20:33:52Z</project.build.outputTimestamp>
         <root.dir>${project.basedir}</root.dir>
 
@@ -72,6 +73,7 @@
                     <archive>
                         <manifestEntries>
                             <Built-By>MageTeam</Built-By>
+                            <Manaforge-Revision>${manaforge.revision}</Manaforge-Revision>
                             <Build-Time>${project.build.outputTimestamp}</Build-Time>
                         </manifestEntries>
                     </archive>

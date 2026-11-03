@@ -1,0 +1,52 @@
+name: Manaforge engine
+on:
+  push:
+    branches: ['manaforge/**']
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      broad:
+        type: boolean
+        default: false
+        description: Run the broad engine suite in CI
+permissions:
+  contents: read
+jobs:
+  engine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      MAVEN_OPTS: -Xmx6g -Dfile.encoding=UTF-8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '23.0.2'
+          cache: maven
+      - name: Pin Maven and source timestamp
+        shell: bash
+        run: |
+          curl -fsSLo /tmp/maven.zip https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.9/apache-maven-3.9.9-bin.zip
+          echo '8beac8d11ef208f1e2a8df0682b9448a9a363d2ad13ca74af43705549e72e74c9378823bf689287801cbbfc2f6ea9596201d19ccacfdfb682ee8a2ff4c4418ba  /tmp/maven.zip' | sha512sum -c -
+          unzip -q /tmp/maven.zip -d /tmp
+          echo '/tmp/apache-maven-3.9.9/bin' >> "$GITHUB_PATH"
+          echo "SOURCE_TIME=$(git show -s --format=%cI HEAD)" >> "$GITHUB_ENV"
+      - name: Build coherent modules
+        run: mvn -B -ntp -Dmanaforge.revision=$GITHUB_SHA -Dproject.build.outputTimestamp=$SOURCE_TIME -pl Mage.Server,Mage.Client,Mage.Tests -am clean install -DskipTests
+      - name: Focused card regressions
+        run: mvn -B -ntp -pl Mage.Tests -am test '-Dtest=FeatherRadiantArbiterTest,ImmortalObligation*Test' -Dsurefire.failIfNoSpecifiedTests=false
+      - name: Broad engine validation
+        if: github.event_name == 'workflow_dispatch' && inputs.broad
+        run: mvn -B -ntp -pl Mage.Tests -am test
+      - name: Package matching distributions
+        run: mvn -B -ntp -Dmanaforge.revision=$GITHUB_SHA -Dproject.build.outputTimestamp=$SOURCE_TIME -pl Mage.Server,Mage.Client assembly:single
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: manaforge-xmage-${{ github.sha }}
+          path: |
+            Mage.Server/target/mage-server.zip
+            Mage.Client/target/mage-client.zip
+            Mage.Tests/target/surefire-reports/
+            manaforge/
