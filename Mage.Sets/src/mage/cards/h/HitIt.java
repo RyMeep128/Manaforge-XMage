@@ -2,7 +2,7 @@ package mage.cards.h;
 
 import mage.abilities.common.EntersBattlefieldTriggeredAbility;
 import mage.abilities.common.SimpleStaticAbility;
-import mage.abilities.effects.common.LookLibraryAndPickControllerEffect;
+import mage.abilities.effects.common.RevealLibraryPickControllerEffect;
 import mage.abilities.effects.common.continuous.GainAbilityControlledEffect;
 import mage.abilities.keyword.HasteAbility;
 import mage.cards.CardImpl;
@@ -16,6 +16,7 @@ import java.util.UUID;
 
 /**
  * @author muz
+ * Downstream: public reveal per Wizards Star Trek release-note Oracle correction.
  */
 public final class HitIt extends CardImpl {
 
@@ -27,8 +28,8 @@ public final class HitIt extends CardImpl {
             HasteAbility.getInstance(), Duration.WhileOnBattlefield, StaticFilters.FILTER_PERMANENT_CREATURES
         )));
 
-        // When this enchantment enters, look at the top five cards of your library. Put a land card from among them onto the battlefield tapped and the rest into your graveyard.
-        this.addAbility(new EntersBattlefieldTriggeredAbility(new LookLibraryAndPickControllerEffect(
+        // When this enchantment enters, reveal the top five cards of your library. Put a land card from among them onto the battlefield tapped and the rest into your graveyard.
+        this.addAbility(new EntersBattlefieldTriggeredAbility(new RevealLibraryPickControllerEffect(
             5, 1, StaticFilters.FILTER_CARD_LAND_A, PutCards.BATTLEFIELD_TAPPED, PutCards.GRAVEYARD, false
         )));
     }
