@@ -11,7 +11,7 @@ prevent force pushes/deletion. Local branches cannot provide server-side protect
 Use Maven 3.9.9 and JDK 23, compiling for Java 8. Set MAVEN_OPTS=-Xmx6g.
 Build: `mvn -B -ntp -pl Mage.Server,Mage.Client,Mage.Tests -am install -DskipTests`.
 Focused test: `mvn -B -ntp -pl Mage.Tests -am test -Dtest=FeatherRadiantArbiterTest,ImmortalObligationTest -Dsurefire.failIfNoSpecifiedTests=false`.
-Assembly: `mvn -B -ntp -pl Mage.Server,Mage.Client assembly:single`.
+Assembly: `mvn -B -ntp -pl Mage.Server,Mage.Client package assembly:single -DskipTests`.
 Set `-Dproject.build.outputTimestamp=<source commit ISO timestamp>` for builds and
 assemblies. All modules must come from this checkout, never overlaid on another build.
 

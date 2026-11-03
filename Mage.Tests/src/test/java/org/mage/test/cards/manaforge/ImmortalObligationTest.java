@@ -59,7 +59,7 @@ public class ImmortalObligationTest extends CardTestPlayerBase {
     }
     @Test public void restrictionsRemainAfterControlChanges() {
         setup();
-        addCard(Zone.BATTLEFIELD, playerA, "Island", 2);
+        addCard(Zone.BATTLEFIELD, playerA, "Island", 3);
         addCard(Zone.HAND, playerA, "Mind Control");
         waitStackResolved(1, PhaseStep.PRECOMBAT_MAIN);
         castSpell(1, PhaseStep.PRECOMBAT_MAIN, playerA, "Mind Control", "Silvercoat Lion");
