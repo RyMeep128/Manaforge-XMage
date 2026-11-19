@@ -61,6 +61,14 @@
       "upstream_equivalent": "existing MjolnirHammerOfThor implementation",
       "disposition": "retain regression tests; spelling alias is in Manaforge rules_identity.py",
       "reference": "m/mjolnir_hammer_of_thor.txt"
+    },
+    {
+      "id": "MF-LONDON-KEEP-FIRST",
+      "status": "implemented",
+      "tests": "org.mage.test.mulligan.LondonMulliganTest,org.mage.test.mulligan.SmoothedLondonMulliganTest",
+      "dependencies": [],
+      "upstream_equivalent": null,
+      "description": "Offer every seven-card redraw before asking the player to bottom cards; bottom only the finally kept hand in endMulligan."
     }
   ]
 }
