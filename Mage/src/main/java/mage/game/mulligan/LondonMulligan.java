@@ -112,6 +112,9 @@ public class LondonMulligan extends Mulligan {
 
     @Override
     public void endMulligan(Game game, UUID playerId) {
+        if (openingHandSizes.get(playerId).equals(startingHandSizes.get(playerId))) {
+            return; // No paid mulligan: keeping must not trim a configured or modified hand.
+        }
         Player player = game.getPlayer(playerId);
         int newHandSize = openingHandSizes.get(playerId);
         while (player.canRespond() && player.getHand().size() > newHandSize) {

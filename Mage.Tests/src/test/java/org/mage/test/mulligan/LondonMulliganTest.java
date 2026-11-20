@@ -54,4 +54,15 @@ public class LondonMulliganTest extends MulliganTestBase {
     @Test public void freeMulliganPreservesSevenAndOnlyFinalKeepBottoms() {
         for (int mulligans = 0; mulligans <= 8; mulligans++) scenario(1, mulligans);
     }
+    @Test public void keepingWithoutPaidMulligansDoesNotCapAnEnlargedHand() {
+        for (int free : new int[]{0, 1}) {
+            MulliganScenarioTest scenario = new MulliganScenarioTest(getMullType(), free);
+            if (free > 0) scenario.mulligan(() -> true);
+            scenario.mulligan(() -> {
+                scenario.drawAdditionalCards(3);
+                return false;
+            });
+            scenario.run(() -> scenario.assertSizes(10, 30));
+        }
+    }
 }
