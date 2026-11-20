@@ -39,6 +39,7 @@ public class MulliganTestBase {
         private final List<Step> steps = new ArrayList<>();
 
         private MulliganStubPlayer player1;
+        private Game game;
 
         public MulliganScenarioTest(MulliganType mulliganType, int freeMulligans) {
             this.mulliganType = mulliganType;
@@ -69,6 +70,7 @@ public class MulliganTestBase {
                 protected void play(UUID nextPlayerId) {
                 }
             };
+            this.game = game;
             GameOptions options = new GameOptions();
             options.skipInitShuffling = true;
             game.setGameOptions(options);
@@ -93,6 +95,10 @@ public class MulliganTestBase {
         public Set<UUID> getHand() {
             checkState(player1 != null);
             return unmodifiableSet(player1.getHand());
+        }
+
+        public void drawAdditionalCards(int count) {
+            player1.drawCards(count, null, game);
         }
 
         public List<UUID> getLibrary() {

@@ -108,16 +108,20 @@ public class LondonMulligan extends Mulligan {
                     (newHandSize == 1 ? " card" : " cards"));
         }
         drawHand(numCards, player, game);
+    }
 
+    @Override
+    public void endMulligan(Game game, UUID playerId) {
+        if (openingHandSizes.get(playerId).equals(startingHandSizes.get(playerId))) {
+            return; // No paid mulligan: keeping must not trim a configured or modified hand.
+        }
+        Player player = game.getPlayer(playerId);
+        int newHandSize = openingHandSizes.get(playerId);
         while (player.canRespond() && player.getHand().size() > newHandSize) {
             Target target = new TargetCardInHand(new FilterCard("card (" + (player.getHand().size() - newHandSize) + " more) to put on the bottom of your library"));
             player.chooseTarget(Outcome.Discard, target, null, game);
             player.putCardsOnBottomOfLibrary(new CardsImpl(target.getTargets()), game, null, true);
         }
-    }
-
-    @Override
-    public void endMulligan(Game game, UUID playerId) {
     }
 
     @Override
